@@ -35,7 +35,10 @@ def index():
                     for i in body:
                         if "\n" in i:
                             i = i.replace("\n", "")
-                        a.input(type='hidden', name=i.split('=')[0], value=i.split('=')[1])
+                        try:
+                            a.input(type='hidden', name=i.split('=')[0], value=i.split('=')[1])
+                        except Exception:
+                            continue
                 with a.script():
                     a('document.forms[0].submit()')
         poc = str(a)
